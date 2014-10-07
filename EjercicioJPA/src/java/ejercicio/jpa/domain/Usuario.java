@@ -1,12 +1,24 @@
 package ejercicio.jpa.domain;
 
+import java.io.Serializable;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
-public class Usuario {
+@Entity
+public class Usuario implements Serializable {
+    @Id
+    private Long id;
     
     private String nombre;
+    
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Compra> listaCompras;
 
+    public Usuario() {}
+    
     public String getNombre() {
         return nombre;
     }
@@ -21,6 +33,14 @@ public class Usuario {
 
     public void setListaCompras(List<Compra> listaCompras) {
         this.listaCompras = listaCompras;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
     
 }

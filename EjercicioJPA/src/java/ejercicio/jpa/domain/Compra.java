@@ -1,16 +1,30 @@
 package ejercicio.jpa.domain;
 
-import java.math.BigDecimal;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
 
-public class Compra {
+@Entity
+public class Compra implements Serializable {
+    @Id
+    private Long id;
     
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date date;
+    
+    @ManyToOne
     private Usuario usuario;
+    
+    @OneToMany
     private List<Producto> productos;
     private Float total;
 
+    public Compra() {}
     public Date getDate() {
         return date;
     }
@@ -41,6 +55,14 @@ public class Compra {
 
     public void setTotal(Float total) {
         this.total = total;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
     
 }
