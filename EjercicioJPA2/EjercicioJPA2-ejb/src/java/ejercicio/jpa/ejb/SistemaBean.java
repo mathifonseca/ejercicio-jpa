@@ -25,24 +25,8 @@ public class SistemaBean {
     private void init() {
         
         Usuario u = new Usuario();
-        u.setNombre("Juan");
-        
+        u.setNombre("admin");
         em.persist(u);
-        
-        //EJEMPLO
-        
-        //select * from compra where id = 1
-        Compra c = em.find(Compra.class, 1);
-        
-        //select * from usuario
-        List<Usuario> lista = em.createQuery("select u from Usuario u").getResultList();
-        
-        //select * from usuario where name = 'juan'
-        int edadUsuario = 10;
-        Usuario us = (Usuario) em.createQuery("select u from Usuario u where u.edad > :edadUsuario")
-                .setParameter("nombreUsuario", "Juan")
-                .setParameter("edadUsuario", 10)
-                .getSingleResult();
         
     }
 
